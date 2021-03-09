@@ -1,7 +1,11 @@
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
+const path = require('path');
+require('dotenv').config({
+  path: path.resolve('.env'),
+});
 import {AddressInfo} from 'net'
+import {userRouter} from './Router/UserRouter'
 
 export const app = express()
 
@@ -18,3 +22,5 @@ const server = app.listen(3006, () => {
         console.log(`Server failure`)
     }
 })
+
+app.use('/user/', userRouter)
